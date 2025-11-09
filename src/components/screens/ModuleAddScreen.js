@@ -1,66 +1,21 @@
-import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Screen from "../layout/Screen";
-import Icons from "../UI/Icons";
-import { Button, ButtonTray } from "../UI/Button";
-
-const defaultModule = {
-  ModuleID: null,
-  ModuleCode: null,
-  ModuleName: null,
-  ModuleLevel: null,
-  ModuleLeaderID: null,
-  ModuleLeaderName: null,
-  ModuleImage: null,
-};
+import ModuleForm from "../entity/modules/ModuleForm";
 
 const ModuleAddScreen = ({ navigation, route }) => {
   //Initialisations -----------------
   const { onAdd } = route.params;
-  defaultModule.ModuleID = Math.floor(100000 + Math.random() * 900000);
-  defaultModule.ModuleImage = 'https://images.freeimages.com/images/small-previews/cf5/cellphone-1313194.jpg';
 
   // State --------------------------
   const [module, setModule] = useState(defaultModule);
 
   // Handlers -----------------------
-  const handleAdd = () => onAdd(module);
   const handleCancel = () => navigation.goBack();
-
-  const handleChange = (field, value) => setModule({ ...module, [field]: value })
 
   // View ---------------------------
   return (
     <Screen>
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>Module code</Text>
-        <TextInput value={module.ModuleCode} onChangeText={(value) => handleChange('ModuleCode', value)} style={styles.itemTextInput} />
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>Module name</Text>
-        <TextInput value={module.ModuleName} onChangeText={(value) => handleChange('ModuleName', value)} style={styles.itemTextInput} />
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>Module level</Text>
-        <TextInput value={module.ModuleLevel} onChangeText={(value) => handleChange('ModuleLevel', value)} style={styles.itemTextInput} />
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>Module leader</Text>
-        <TextInput value={module.ModuleLeaderName} onChangeText={(value) => handleChange('ModuleLeaderName', value)} style={styles.itemTextInput} />
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>Module image URL</Text>
-        <TextInput value={module.ModuleImage} onChangeText={(value) => handleChange('ModuleImage', value)} style={styles.itemTextInput} />
-      </View>
-
-      <ButtonTray>
-        <Button label='Add' icon={<Icons.Add />} onClick={handleAdd} />
-        <Button label='Cancel' onClick={handleCancel} />
-      </ButtonTray>
+      <ModuleForm onSubmit={onAdd} onCancel={handleCancel} />
     </Screen>
   );
 };
