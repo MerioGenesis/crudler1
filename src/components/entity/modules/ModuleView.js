@@ -19,7 +19,7 @@ const ModuleView = ({ module, onDelete, onModify }) => {
     // View --------------------------------
     return (
         <View styles={styles.container}>
-            <FullWidthImage source={{ uri: module.ModuleImage }} style={styles.image} />
+            <FullWidthImage source={{ uri: module.ModuleImageURL }} style={styles.image} />
             <View style={styles.infoTray}>
                 <Text style={styles.boldText}>{module.ModuleCode} {module.ModuleName}</Text>
                 <Text style={styles.text}>Level {module.ModuleLevel}</Text>
