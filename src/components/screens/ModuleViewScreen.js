@@ -9,7 +9,7 @@ const ModuleViewScreen = ({ navigate, route }) => {
 
   // State --------------------------
   // Handlers -----------------------
-  const gotoModifyScreen =() => NavigationActivation.navigate('ModuleModifyScreen', {module, onModify})
+  const gotoModifyScreen =() => nnavigation.replace('ModuleModifyScreen', {module, onModify})
   // View ---------------------------
   return (
     <Screen>
