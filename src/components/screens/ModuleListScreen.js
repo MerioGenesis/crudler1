@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import { LogBox, Text, StyleSheet } from 'react-native';
-import API from '../API/API.js';
+import useLoad from '../API/useLoad.js';
 import Screen from '../layout/Screen';
 import Icons from '../UI/Icons.js';
 import { Button, ButtonTray } from '../UI/Button.js';
@@ -13,16 +12,11 @@ const ModuleListScreen = ({ navigation }) => {
   //Initialisations -----------------
   LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
   const modulesEndpoint = 'https://softwarehub.uk/unibase/api/modules';
-  // State --------------------------
-  const [modules, setModules] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  const loadModules = async (endpoint) =>{
-    const response = await API.get(endpoint);
-    setIsLoading(false);
-    if(response.isSuccess) setModules(response.result);
-  }
-  useEffect(() => {loadModules(modulesEndpoint)}, []);
+  // State --------------------------
+  const [modules, setModules, isLoading] = useLoad(modulesEndpoint);
+
+  
   
   // Handlers -----------------------
   const handleDelete = (module) => setModules(modules.filter((item) => item.ModuleID !== module.ModuleID));
@@ -50,6 +44,7 @@ const ModuleListScreen = ({ navigation }) => {
     navigation.replace('ModuleViewScreen', {module, onDelete, onModify})
   }
   const gotoAddScreen = () => navigation.navigate('ModuleAddScreen', { onAdd });
+
   // View ---------------------------
   return (
     <Screen>
