@@ -2,16 +2,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import Screen from '../layout/Screen';
 import ModuleForm from '../entity/modules/ModuleForm.js';
 
-const ModuleModifyScreen = ({navigation, route}) => {
+const ModuleModifyScreen = ({ navigation, route }) => {
   //Initialisations -----------------
-  const {module,onModify} = route.params;
+  const { module, onModify } = route.params;
   // State --------------------------
   // Handlers -----------------------
   const handleCancel = () => navigation.goBack;
   // View ---------------------------
   return (
     <Screen>
-      <ModuleForm originalModule = {module} onSubmit={} onCancel = {handleCancel} />
+      <ModuleForm originalModule={module} onSubmit={onModify} onCancel={handleCancel} />
     </Screen>
   );
 };
