@@ -21,7 +21,7 @@ const ModuleListScreen = ({ navigation }) => {
   const handleAdd = (module) => setModules([...modules, module]);
 
   const handleModify = (updatedModule) => setModules(
-    modules.map((module) => (module.ModuleID === updatedModule.ModuleID) ? updatedModule : modules)
+    modules.map((module) => (module.ModuleID === updatedModule.ModuleID) ? updatedModule : module)
   );
 
   const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', { module, onDelete, onModify });

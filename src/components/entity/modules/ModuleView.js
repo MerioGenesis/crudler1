@@ -8,14 +8,15 @@ const ModuleView = ({ module, onDelete, onModify }) => {
     // State -------------------------------
     // Handlers ----------------------------
     const handleDelete = () => onDelete(module)
-    const requestDelete = () => Alert.alert(
-        'Delete warning',
-        `Are you sure that you want to delete module ${module.ModuleCode} ${module.ModuleName}`,
-        [
-            { text: 'Cancel' },
-            { text: 'Delete', onPress: handleDelete }
-        ]
-    )
+    const requestDelete = () =>
+        Alert.alert(
+            'Delete warning',
+            `Are you sure that you want to delete module ${module.ModuleCode} ${module.ModuleName}`,
+            [
+                { text: 'Cancel' },
+                { text: 'Delete', onPress: handleDelete }
+            ]
+        )
     // View --------------------------------
     return (
         <View styles={styles.container}>
