@@ -16,8 +16,6 @@ const ModuleListScreen = ({ navigation }) => {
   // State --------------------------
   const [modules, setModules, isLoading] = useLoad(modulesEndpoint);
 
-  
-  
   // Handlers -----------------------
   const handleDelete = (module) => setModules(modules.filter((item) => item.ModuleID !== module.ModuleID));
   const handleAdd = (module) => setModules([...modules, module]);
@@ -37,11 +35,11 @@ const ModuleListScreen = ({ navigation }) => {
     navigation.goBack();
   }
 
-  const onModify = (module) =>{
+  const onModify = (module) => {
     handleModify(module);
     //navigation.navigate("ModuleListScreen");
     //navigation.popToTop();
-    navigation.replace('ModuleViewScreen', {module, onDelete, onModify})
+    navigation.replace('ModuleViewScreen', { module, onDelete, onModify })
   }
   const gotoAddScreen = () => navigation.navigate('ModuleAddScreen', { onAdd });
 
@@ -52,9 +50,8 @@ const ModuleListScreen = ({ navigation }) => {
         <Button label="Add" icon={<Icons.Add />} onClick={gotoAddScreen} />
       </ButtonTray>
       {
-        isLoading &&<Text>Loading records...</Text>
+        isLoading && <Text>Loading records...</Text>
       }
-      <Text>Loading records...</Text>
       <ModuleList modules={modules} onSelect={gotoViewScreen} />
     </Screen>
   );

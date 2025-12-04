@@ -7,8 +7,6 @@ const ModuleAddScreen = ({ navigation, route }) => {
   const { onAdd } = route.params;
 
   // State --------------------------
-  const [module, setModule] = useState(defaultModule);
-
   // Handlers -----------------------
   const handleCancel = () => navigation.goBack();
 
